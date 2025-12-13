@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAvEN's Store - Sales Dashboard</title>
+  <!-- style.css must be in the SAME folder as this index.html -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛒 RAvEN's Store</h1>
+      <p>Smart sales analytics for your products</p>
+      <button id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+    </header>
+
+    <div class="input-section">
+      <select id="productSelect">
+        <option value="">Select a product...</option>
+      </select>
+      <button onclick="searchSelectedProduct()">🔍 Search Product</button>
+    </div>
+
+    <div id="loading" class="loading hidden"><b>Loading...</b></div>
+
+    <div id="results" class="results hidden">
+      <!-- Metrics + download button -->
+      <div class="metrics">
+        <div class="metric clickable" id="metric-month" onclick="toggleSection('section-month')">
+          <h3 id="monthSummary">-</h3>
+          <span>Monthly Sales</span>
+        </div>
+        <div class="metric clickable" id="metric-year" onclick="toggleSection('section-year')">
+          <h3 id="yearSummary">-</h3>
+          <span>Total Units (Year-wise)</span>
+        </div>
+        <div class="metric clickable" id="metric-forecast" onclick="toggleSection('section-forecast')">
+          <h3 id="forecastSummary">-</h3>
+          <span>Next 3 / 6 / 12 Months</span>
+        </div>
+      </div>
+
+      <button id="downloadCsvBtn" onclick="downloadCurrentDataAsCsv()">
+        ⬇️ Download CSV
+      </button>
+
+      <!-- 1) Monthly selector + result -->
+      <div id="section-month" class="detail-section hidden">
+        <h3>Monthly Sales</h3>
+        <div class="selector-row">
+          <label for="monthSelect">Select Month:</label>
+          <select id="monthSelect" onchange="showSelectedMonth()"></select>
+        </div>
+        <table class="monthly-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Units Sold</th>
+            </tr>
+          </thead>
+          <tbody id="monthTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 2) Year-wise selector + months of that year -->
+      <div id="section-year" class="detail-section hidden">
+        <h3>Year-wise Sales</h3>
+        <div class="selector-row">
+          <label for="yearSelect">Select Year:</label>
+          <select id="yearSelect" onchange="showSelectedYear()"></select>
+        </div>
+        <table class="monthly-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Units Sold</th>
+            </tr>
+          </thead>
+          <tbody id="yearTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- 3) Next 3 / 6 / 12 months totals -->
+      <div id="section-forecast" class="detail-section hidden">
+        <h3>Next Months Forecast</h3>
+        <div class="forecast-total-box">
+          <p>Predicted units:</p>
+          <div id="forecastTotalDisplay">-</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- script.js must also be in the SAME folder as index.html -->
+  <script src="script.js"></script>
+</body>
+</html>
