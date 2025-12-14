@@ -7,7 +7,6 @@ def scrape_amazon_product(url):
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    # Amazon selector (inspect F12 to confirm)
     sales_elem = soup.select_one('[data-feature-name="purchaseCount"]') or soup.find('span', string=lambda t: t and 'bought' in t.lower())
     if sales_elem:
         sold = int(''.join(filter(str.isdigit, sales_elem.text)))
