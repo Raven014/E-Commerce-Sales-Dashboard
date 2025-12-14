@@ -1,6 +1,10 @@
 // API config for local testing
-const API_BASE = 'http://127.0.0.1:5000/api';
+// const API_BASE = 'http://127.0.0.1:5000/api';
+// const API_KEY  = 'raven-secret';
+
+const API_BASE = 'https://e-commerce-sales-dashboard-backend.onrender.com';  // use your exact Render URL
 const API_KEY  = 'raven-secret';
+
 
 // store data in memory for selectors and forecasts
 let currentMonthly = [];
