@@ -153,10 +153,16 @@ def check_api_password():
 init_db()
 seed_sample_data()
 
+# @app.route("/")
+# def dashboard():
+#     # This is only for local templates; in production, Netlify serves index.html
+#     return render_template("dashboard.html")
+
 @app.route("/")
 def dashboard():
-    # This is only for local templates; in production, Netlify serves index.html
-    return render_template("dashboard.html")
+    # Simple health check for Render; Netlify serves the real frontend.
+    return jsonify({"status": "ok"})
+
 
 @app.route("/api/products", methods=["GET"])
 def list_products():
