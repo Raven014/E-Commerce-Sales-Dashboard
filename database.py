@@ -1,9 +1,18 @@
+# import sqlite3
+# from datetime import datetime
+# import pandas as pd
+# from datetime import datetime
+
+# DB_PATH = '../data/sales.db'
+
+import os
 import sqlite3
 from datetime import datetime
 import pandas as pd
-from datetime import datetime
 
-DB_PATH = '../data/sales.db'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, 'data', 'sales.db')
+
 
 def get_connection():
     return sqlite3.connect(DB_PATH)
